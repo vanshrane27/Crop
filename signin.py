@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import hashlib
 import os
+import subprocess  # Added import for running main.py
 
 # File to store user credentials
 CREDENTIALS_FILE = "user_credentials.txt"
@@ -83,8 +84,10 @@ def signin():
     password = entry_signin_password.get()
 
     if validate_credentials(username, password):
-        messagebox.showinfo("Success", "Login successful!")
-        # Add logic to redirect to the main application
+        #Smessagebox.showinfo("Success", "Login successful!")
+        # Run main.py
+        root.destroy()  # Close the current window
+        subprocess.run(["python", "dash.py"])  # Ensure main.py is in the same directory
     else:
         messagebox.showerror("Error", "Invalid username or password!")
 
